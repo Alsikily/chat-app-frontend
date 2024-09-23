@@ -1,0 +1,8 @@
+// Fonts
+$fonts: "~/assets/fonts";
+$tajawal: "Tajawal-Regular.ttf";
+
+@font-face {
+    src: url("#{$fonts}/#{$tajawal}") format('truetype');
+    font-family: "tajawal";
+}

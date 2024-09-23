@@ -1,0 +1,13 @@
+@media(max-width: 1100px) {
+    .app main.chats-dashboard > aside {
+        position: absolute;
+        left: -300px;
+        z-index: 990;
+        // &:not(:has(.open)) {
+        //     box-shadow: 0 0 8px 5px #ebebeb;
+        // }
+        &.open {
+            left: 0;
+        }
+    }
+}

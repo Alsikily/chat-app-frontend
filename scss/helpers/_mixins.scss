@@ -1,0 +1,57 @@
+@mixin center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+@mixin circle($dimension: null, $background: null) {
+
+    @if $dimension {
+        width: $dimension;
+        height: $dimension;
+    }
+
+    @if $background {
+        background-color: $background;
+    }
+
+    border-radius: 50%;
+
+}
+
+@mixin square($dimension, $dimension2: $dimension) {
+    width: $dimension;
+    height: $dimension2;
+}
+
+@mixin full($width: 100%, $height: 100%) {
+    width: $width;
+    height: $height;
+}
+
+@mixin textarea($width: 100%, $height: 100%) {
+    min-width: $width;
+    max-width: $width;
+    min-height: $height;
+    max-height: $height;
+}
+
+@mixin boxes($box, $plus: auto-fit) {
+    display: grid;
+    grid-template-columns: repeat($plus, minmax($box, 1fr));
+}
+
+@mixin flex($type: row, $gap: 0) {
+    display: flex;
+    flex-direction: $type;
+    gap: $gap;
+}
+
+@mixin textarea($width, $min-width, $max-width, $height, $min-height, $max-height) {
+    width: $width;
+    min-width: $min-width;
+    max-width: $max-width;
+    height: $height;
+    min-height: $min-height;
+    max-height: $max-height;
+}

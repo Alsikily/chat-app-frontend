@@ -1,0 +1,870 @@
+@use "helpers/animations" as *;
+@use 'helpers/colors' as *;
+@use 'helpers/mixins' as *;
+@use "helpers/fonts" as *;
+
+.app {
+
+    // Auth Pages Layout
+    .auth-container {
+        transition: background 0.6s;
+        background-color: $main-color-light;
+        width: 100%;
+        height: 100vh;
+        @include center;
+        .auth-form {
+            background-color: #fff;
+            max-width: 400px;
+            border-radius: 25px;
+            overflow: hidden;
+            padding: 30px 35px;
+            width: 100%;
+            flex-direction: column;
+            text-align: center;
+            @include center;
+            > header {
+                font-weight: bold;
+                font-size: 38px;
+                color: $main-color-light;
+                margin-bottom: 10px;
+            }
+            form {
+                width: 100%;
+                @include flex(column, 6px);
+                .input {
+                    width: 100%;
+                    input {
+                        text-align: center;
+                        width: 100%;
+                        border-radius: 100px;
+                        background-color: $gray-color-2;
+                        font-weight: bold;
+                        font-size: 16px;
+                        padding: 16px 0;
+                        &::placeholder {
+                            color: $gray-color-1;
+                        }
+                    }
+                    &.submit {
+                        position: relative;
+                        overflow: hidden;
+                        border-radius: 100px;
+                        input {
+                            background-color: $main-color-light;
+                            color: #fff;
+                        }
+                        span.flash {
+                            position: absolute;
+                            left: -30px;
+                            top: -15px;
+                            height: 130%;
+                            width: 0px;
+                            box-shadow: 0 0 12px 2px #fff;
+                            background: #fff;
+                            transform: rotate(15deg);
+                            transition: left 0.25s linear;
+                        }
+                        &:hover span.flash {
+                            left: 110%;
+                        }
+                    }
+                }
+            }
+            > span {
+                display: block;
+                margin-top: 5px;
+                font-size: 14px;
+                color: $gray-color-1;
+                > a {
+                    color: $gray-color-1;
+                    transition: color 0.3s;
+                    font-weight: bold;
+                    &:hover {
+                        color: $main-color-light;
+                    }
+                }
+                &:hover {
+                    > span {
+                        color: $main-color-light;
+                    }
+                }
+            }
+        }
+    }
+
+    // Chats Dashboard
+    main.chats-dashboard {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        > aside {
+            $aside-padding: 10px;
+            width: 300px;
+            height: 100vh;
+            background-color: $main-color-light;
+            position: relative;
+            > header {
+                padding: 15px $aside-padding;
+                > section.top {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 3px;
+                    height: 50px;
+                    position: relative;
+                    > .logo {
+                        color: #fff;
+                        font-size: 28px;
+                        letter-spacing: -1px;
+                    }
+                    > .icons {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        gap: 7px;
+                        > span {
+                            display: inline-block;
+                            > svg {
+                                font-size: 20px;
+                                color: #fff;
+                                cursor: pointer;
+                            }
+                            &.add {
+                                @include circle(28px, #fff);
+                                @include center;
+                                > svg {
+                                    color: $main-color-light;
+                                }
+                            }
+                        }
+                    }
+                    > .list {
+                        position: absolute;
+                        right: 0;
+                        top: 53px;
+                        border-radius: 5px;
+                        // border-top-right-radius: 0;
+                        > ul {
+                            $list-padding: 0 8px;
+                            position: relative;
+                            background-color: #fff;
+                            text-align: right;
+                            width: 180px;
+                            border-radius: inherit;
+                            border-top-right-radius: inherit;
+                            height: 150px;
+                            display: flex;
+                            flex-direction: column;
+                            > li {
+                                flex: 1;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                padding: $list-padding;
+                                cursor: pointer;
+                                // font-weight: bold;
+                                @include flex(row, 5px);
+                                &.color-mode {
+                                    justify-content: space-between;
+                                }
+                                > a {
+                                    width: 100%;
+                                    height: 100%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    cursor: pointer;
+                                    color: #000;
+                                    // font-weight: bold;
+                                    @include flex(row, 5px);
+                                    &.plain-li {
+                                        padding: $list-padding;
+                                    }
+                                }
+                            }
+                            // &:after {
+                            //     content: "";
+                            //     width: 0;
+                            //     height: 0;
+                            //     border: 5px solid transparent;
+                            //     border-bottom-color: #fff;
+                            //     position: absolute;
+                            //     top: -10px;
+                            //     right: 0px;
+                            // }
+                        }
+                    }
+                }
+                > section.search {
+                    display: flex;
+                    align-items: center;
+                    height: 45px;
+                    background-color: $white-light;
+                    border-radius: 3px;
+                    overflow: hidden;
+                    > span.icon {
+                        width: 48px;
+                        @include center;
+                        > svg {
+                            color: #fff;
+                            font-size: 16px !important;
+                        }
+                    }
+                    input {
+                        height: 100%;
+                        background-color: transparent;
+                        padding-right: 8px;
+                        color: #fff;
+                        &::placeholder {
+                            color: $white-light;
+                        }
+                    }
+                }
+                > ul.sections {
+                    width: 100%;
+                    height: 45px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 15px 0;
+                    > li {
+                        cursor: pointer;
+                        @include center;
+                        > svg {
+                            height: 100%;
+                            width: 22px;
+                            color: $white-light;
+                        }
+                        &.active {
+                            > svg {
+                                color: #fff;
+                            }
+                        }
+                        &:nth-child(3) {
+                            > svg {
+                                width: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            > nav.friends {
+                > div {
+                    display: none;
+                    &.active {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 25px;
+                    }
+                    > .section {
+                        @include flex(column, 2px);
+                        > header {
+                            padding: 0 $aside-padding;
+                            color: #fff;
+                            height: 30px;
+                            display: flex;
+                            justify-content: space-between;
+                            > span.add-group {
+                                cursor: pointer;
+                            }
+                        }
+                        > div.add-group-info {
+                            padding: 0 $aside-padding;
+                            display: flex;
+                            gap: 4px;
+                            height: 30px;
+                            > input {
+                                flex: 1;
+                                padding: 0 5px;
+                            }
+                            > span.add {
+                                @include square(30px);
+                                @include center;
+                                background-color: #fff;
+                                color: $main-color-light;
+                                cursor: pointer;
+                            }
+                        }
+                        > div.body {
+                            > a {
+                                display: flex;
+                                padding: 6px $aside-padding;
+                                width: 100%;
+                                height: 65px;
+                                &.router-link-exact-active {
+                                    background-color: $white-light;
+                                }
+                                > div.personal-info {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    gap: 4px;
+                                    flex: 1;
+                                    > .photo {
+                                        @include circle(50px);
+                                        overflow: hidden;
+                                        > img {
+                                            @include full;
+                                        }
+                                    }
+                                    > .name-message {
+                                        flex: 1;
+                                        @include flex(column, 1px);
+                                        > span.name {
+                                            font-size: 14px;
+                                            color: #fff;
+                                        }
+                                        > span.message {
+                                            font-size: 12px;
+                                            line-height: 12px;
+                                            color: #fff;
+                                        }
+                                    }
+                                }
+                                > .message-info {
+                                    width: fit-content;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    align-items: flex-end;
+                                    &.msg-recent {
+                                        justify-content: center;
+                                    }
+                                    > span.date {
+                                        font-size: 12px;
+                                    }
+                                    > .msg-exist {
+                                        display: flex;
+                                        align-items: center;
+                                        @include circle(10px, #002a77);
+                                    }
+                                }
+                            }
+                        }
+                        > span.no-data {
+                            padding: 0 $aside-padding;
+                            color: #000000bd;
+                        }
+                        > footer {
+                            padding: 0 $aside-padding;
+                            cursor: pointer;
+                            > span {
+                                &.show-more {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            > span.switcher-open-close {
+                background-color: #ddd;
+                z-index: 990;
+                position: absolute;
+                left: 100%;
+                bottom: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 35px;
+                width: 25px;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                cursor: pointer;
+                display: none;
+            }
+        }
+        > .chat {
+            flex: 1;
+            height: 100vh;
+            > div {
+                $side-padding: 8px;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                background-color: $gray-color-10;
+                @include flex(column);
+                &.exists {
+                    > header {
+                        background-color: $gray-color-10;
+                        padding: 0 $side-padding;
+                        height: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        box-shadow: 0 0 12px 5px #00000014;
+                        position: sticky;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        > .info {
+                            font-size: 24px;
+                            font-weight: bold;
+                            position: relative;
+                            color: #575757;
+                            cursor: pointer;
+                            &.active::after {
+                                content: '';
+                                position: absolute;
+                                right: -15px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                display: block;
+                                background-color: #77E103;
+                                @include circle;
+                                @include square(10px);
+                            }
+                        }
+                        > .options {
+                            > svg {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    > section.body {
+                        background-color: #fff;
+                        flex: 1;
+                        overflow: auto;
+                        padding: 30px $side-padding;
+                        > .day {
+                            > span.header {
+                                display: block;
+                                background-color: #cbcbcb73;
+                                width: 100%;
+                                height: 1px;
+                                position: relative;
+                                margin-bottom: 20px;
+                                &::after {
+                                    content: attr(data-date);
+                                    padding: 0px 15px;
+                                    background-color: #fff;
+                                    color: #bdbdbd;
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    transform: translate(-50%, -50%);
+                                    font-size: 12px;
+                                }
+                            }
+                            > .messages {
+                                @include flex(column, 38px);
+                                padding: 20px 0;
+                                > .user {
+                                    @include flex(row, 5px);
+                                    &.me {
+                                        > .photo {
+                                            order: 1;
+                                        }
+                                        > .user-messages {
+                                            order: 2;
+                                            > .user-message-container {
+                                                > .msg {
+                                                    background-color: $gray-color-2;
+                                                    &:last-of-type {
+                                                        border-bottom-left-radius: 0;
+                                                    }
+                                                    &.record {
+                                                        padding-bottom: 5px;
+                                                    }
+                                                    &.files {
+                                                        > span {
+                                                            display: inline-block;
+                                                            margin-bottom: 5px;
+                                                        }
+                                                        .images {
+                                                            display: grid;
+                                                            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                                                            gap: 8px;
+                                                            img {
+                                                                height: 100px;
+                                                                width: 100%;
+                                                                cursor: pointer;
+                                                            }
+                                                        }
+                                                    }
+                                                    audio {
+                                                        width: 250px;
+                                                        height: 50px;                                                    
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.other {
+                                        justify-content: flex-end;
+                                        > .photo {
+                                            order: 2;
+                                        }
+                                        > .user-messages {
+                                            order: 1;
+                                            > .user-message-container {
+                                                > .msg {
+                                                    background-color: $main-color-light;
+                                                    color: #fff;
+                                                    &:last-of-type {
+                                                        border-bottom-right-radius: 0;
+                                                    }
+                                                    &.record {
+                                                        padding-bottom: 5px;
+                                                    }
+                                                    &.files {
+                                                        > span {
+                                                            display: inline-block;
+                                                            margin-bottom: 5px;
+                                                        }
+                                                        .images {
+                                                            display: grid;
+                                                            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                                                            gap: 8px;
+                                                            img {
+                                                                height: 100px;
+                                                                width: 100%;
+                                                                cursor: pointer;
+                                                            }
+                                                        }
+                                                    }
+                                                    audio {
+                                                        width: 250px;
+                                                        height: 50px;                                                    
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    > .photo {
+                                        align-self: flex-end;
+                                        > .img {
+                                            img {
+                                                @include circle;
+                                            }
+                                        }
+                                    }
+                                    > .user-messages {
+                                        align-self: flex-start;
+                                        @include flex(column, 7px);
+                                        > .user-message-container {
+                                            > .msg {
+                                                padding: 12px;
+                                                border-radius: 10px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    > form.sender {
+                        position: sticky;
+                        bottom: 0;
+                        left: 0;
+                        background-color: #fff;
+                        border-top: 1px solid $gray-color-2;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 5px;
+                        height: 55px;
+                        padding: 10px $side-padding;
+                        > .input {
+                            display: flex;
+                            flex: 1;
+                            > input {
+                                height: 40px;
+                                font-size: 16px;
+                                background-color: transparent;
+                            }
+                            &.recording {
+                                display: none;
+                            }
+                        }
+                        > .options {
+                            width: fit-content;
+                            display: flex;
+                            gap: 5px;
+                            > span {
+                                cursor: pointer;
+                            }
+                            &.recording {
+                                display: none;
+                            }
+                        }
+                        > .record {
+                            display: none;
+                            flex: 1;
+                            height: 100%;
+                            border-radius: 50px;
+                            background-color: $main-color-light;
+                            align-items: center;
+                            padding: 0 10px 0 5px;
+                            justify-content: space-between;
+                            &.recording {
+                                display: flex;
+                            }
+                            > .left {
+                                display: flex;
+                                gap: 10px;
+                                > span.delete-record {
+                                    cursor: pointer;
+                                    color: $main-color-light;
+                                    font-size: 14px;
+                                    @include circle(27px, #fff);
+                                    @include center;
+                                }
+                                > span.sending-animation {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                    gap: 5px;
+                                    > span {
+                                        background-color: #fff;
+                                        height: 10px;
+                                        width: 4px;
+                                        border-radius: 5px;
+                                        &:nth-child(1) {
+                                            animation: changeHeight 0.58s 0.6s linear infinite;
+                                        }
+                                        &:nth-child(2) {
+                                            animation: changeHeight 0.58s 0.3s linear infinite;
+                                        }
+                                        &:nth-child(3) {
+                                            animation: changeHeight 0.58s linear infinite;
+                                        }
+                                        &:nth-child(4) {
+                                            animation: changeHeight 0.58s 0.3s linear infinite;
+                                        }
+                                        &:nth-child(5) {
+                                            animation: changeHeight 0.58s 0.3s linear infinite;
+                                        }
+                                    }
+                                }
+                            }
+                            > .right {
+                                color: #fff;
+                            }
+                        }
+                        > .send {
+                            width: fit-content;
+                            color: #fff;
+                            cursor: pointer;
+                            @include circle(30px, $main-color-light);
+                            @include center;
+                        }
+                    }
+                }
+                &.not-exists {
+                    @include center;
+                    font-size: 50px;
+                    color: #ddd;
+                }
+            }
+        }
+        > .info-container {
+            > .info {
+                width: 300px;
+                height: 100%;
+                position: relative;
+                background-color: #f7f7f7;
+                > span.close {
+                    position: absolute;
+                    top: 25px;
+                    right: 25px;
+                    cursor: pointer;
+                }
+                > div.body {
+                    @include flex(column, 25px);
+                    height: 100%;
+                    padding: 60px 20px;
+                    > .personal {
+                        @include flex(column, 5px);
+                        align-items: center;
+                        overflow: hidden;
+                        > .img {
+                            @include circle(130px);
+                            overflow: hidden;
+                            > img {
+                                @include full;
+                            }
+                        }
+                    }
+                    > main {
+                        @include flex(column, 10px);
+                        > section {
+                            > header {
+                                @include flex(row, 4px);
+                                align-items: center;
+                                cursor: pointer;
+                                margin-bottom: 10px;
+                                > span.icon {
+                                    width: 0;
+                                    height: 0;
+                                    border: 6px solid transparent;
+                                    border-left-color: #000;
+                                    &.opened {
+                                        transform: rotate(45deg) translate(5px, 1px);
+                                    }
+                                }
+                            }
+                            > section.content {
+                                display: none;
+                                > .files {
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                                    gap: 4px;
+                                    &:not(:last-child) {
+                                        margin-bottom: 4px;
+                                    }
+                                    .file {
+                                        width: 100%;
+                                        height: 100px;
+                                        img {
+                                            @include full;
+                                            // @include square(100px);
+                                        }
+                                    }
+                                }
+                                &.opened {
+                                    display: block;
+                                }
+                                > .members {
+                                    margin-bottom: 10px;
+                                    @include flex(column, 5px);
+                                    > .member {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        > .info {
+                                            @include flex(row, 5px);
+                                            > .img {
+                                                @include circle(40px);
+                                                overflow: hidden;
+                                                img {
+                                                    @include full;
+                                                }
+                                            }
+                                            > span.name {
+                                                align-self: center;
+                                            }
+                                        }
+                                        > span.remove {
+                                            color: $color-danger;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                                > .add-member {
+                                    @include flex(column, 4px);
+                                    .inputs {
+                                        @include flex(row, 5px);
+                                        > input {
+                                            padding: 0 5px;
+                                        }
+                                        > span.add {
+                                            background-color: $main-color-light;
+                                            color: #fff;
+                                            @include square(30px);
+                                            @include center;
+                                        }
+                                    }
+                                    > .suggests {
+                                        background-color: #fff;
+                                        max-height: 120px;
+                                        overflow-y: auto;
+                                        > li {
+                                            @include flex(column, 5px);
+                                            justify-content: center;
+                                            height: 40px;
+                                            padding: 0px 6px;
+                                            cursor: pointer;
+                                            &:not(:last-child) {
+                                                border-bottom: 1px dashed #ddd;
+                                            }
+                                            > span.name {
+                                                line-height: 10px;
+                                                font-weight: bold;
+                                            }
+                                            > span.email {
+                                                line-height: 10px;
+                                                font-size: 14px;
+                                                color: #bbb;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    > .actions {
+                        @include flex(column, 5px);
+                        > .action {
+                            cursor: pointer;
+                            font-weight: bold;
+                            @include flex(row, 10px);
+                            &.archive {
+                                color: $color-primary
+                            }
+                            &.delete {
+                                color: $color-danger;
+                            }
+                            &.block {
+                                color: $color-danger;
+                            }
+                            > .icon {
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Cover Forms
+    > .cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 60%);
+        z-index: 999;
+        cursor: pointer;
+        @include center;
+        > .parent {
+            background-color: #fff;
+            padding: 25px 15px;
+            border-radius: 3px;
+            cursor: auto;
+        }
+    }
+}
+
+.dark-mode {
+    .auth-container {
+        background-color: $main-color-dark;
+        .auth-form {
+            background-color: $dark-gray-1;
+            > header {
+                color: #fff;
+            }
+            form {
+                .input {
+                    input {
+                        background-color: $dark-gray-10;
+                        &::placeholder {
+                            color: #ffffff73;
+                        }
+                    }
+                    &.submit {
+                        input {
+                            background-color: $main-color-dark;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    main.chats-dashboard {
+        > aside {
+            background-color: $main-color-dark;
+        }
+    }
+}
