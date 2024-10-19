@@ -48,7 +48,7 @@ export const useAuthMethodsStore = defineStore('authMethods', () => {
 
         } else {
 
-            RegisterErrors.value = response.value.messages;
+            LoginErrors.value = response.value.messages;
 
         }
 
@@ -65,6 +65,10 @@ export const useAuthMethodsStore = defineStore('authMethods', () => {
 
             setStates(response.value.user, true, `${response.value.authorisation.type} ${response.value.authorisation.token}`);
             redirectToDashboard();
+
+        } else {
+
+            RegisterErrors.value = response.value.messages;
 
         }
 
@@ -92,6 +96,6 @@ export const useAuthMethodsStore = defineStore('authMethods', () => {
 
     }
 
-    return { loginData, registerData, login, register, logout };
+    return { loginData, registerData, LoginErrors, RegisterErrors, login, register, logout };
 
 })

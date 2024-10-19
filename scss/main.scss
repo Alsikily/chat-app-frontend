@@ -68,6 +68,11 @@
                             left: 110%;
                         }
                     }
+                    span.error {
+                        color: $color-danger;
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
                 }
             }
             > span {

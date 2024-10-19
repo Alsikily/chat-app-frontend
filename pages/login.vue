@@ -8,6 +8,7 @@
                 </div>
                 <div class="input">
                     <input type="password" placeholder="password" v-model="authMethods.loginData.password">
+                    <span class="error" v-if="authMethods.LoginErrors != null">E-mail or password is invalid</span>
                 </div>
                 <div class="input submit">
                     <input type="submit" value="Register">
